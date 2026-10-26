@@ -1,0 +1,17 @@
+{
+  "name": "scraping-hub",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "node api.js && concurrently -k -n web,queue \"php artisan serve --host=127.0.0.1 --port=8002\" \"php artisan queue:work --tries=1 --timeout=150 --sleep=1\"",
+    "browsers": "puppeteer browsers install chrome",
+    "test:e2e": "node --test --test-concurrency=1 tests/e2e/*.test.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "puppeteer": "^25.16.0"
+  }
+}
